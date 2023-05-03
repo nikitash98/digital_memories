@@ -7,7 +7,6 @@ const Person = (props) => {
 
     const handleHover = (e) => {
         document.body.style.cursor = 'pointer';
-        console.log(props.camRef.current)
         props.camRef.current.fov = 20;
     }
     const unHover = (e) => {

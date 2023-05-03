@@ -11,8 +11,10 @@ const Childhood = (props) => {
     // but a specific material => pointsMaterial
     return (
         <group>
-          <BasicParticles filename = {"famiglida.ply"}></BasicParticles>
+          <BasicParticles filename = {"famiglida.ply"} point_size = {10.0}></BasicParticles>
+          {/*
           <BasicParticles filename = {"hause.ply"}></BasicParticles>
+          */}
 
         </group>
     );

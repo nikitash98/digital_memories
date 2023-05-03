@@ -13,7 +13,7 @@ const Subway = (props) => {
     // but a specific material => pointsMaterial
     return (
         <group>
-            <BasicParticles filename = "subway.ply"></BasicParticles>
+            <BasicParticles filename = "subway.ply" point_size = {10.0}></BasicParticles>
             {/*
 
             <Person camRef = {props.camRef}></Person>

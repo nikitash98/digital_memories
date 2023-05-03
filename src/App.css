@@ -46,9 +46,67 @@
   background-color: black;
 }
 
+
+
 .overlay {
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
+  height: 100%;
+  color: white;
+  pointer-events: none;
+
+}
+
+
+.logo-icon {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  padding: 20px;
+}
+
+.info-icon {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  padding: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.info-container {
+  position: absolute;
+  top: 10vh;
+
+  right: 0%;
+  width: 40%;
+  text-align: left;
+  overflow: scroll;
+  height: 90vh;
+  pointer-events: auto;
+}
+
+.click-button {
+  background-color: black;
+  border: 1px solid white;
+  padding: 20px;
+  color: white;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  pointer-events: auto;
+  width: fit-content;
+}
+
+
+#next {
+  bottom: 5%;
+  right: 5%;
+}
+
+#previous {
+  bottom: 5%;
+  left: 5%;
 }

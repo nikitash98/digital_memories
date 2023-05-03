@@ -1,5 +1,6 @@
 const vertexShader = `
 uniform float uTime;
+uniform float uSize;
 varying vec3 vColor;
 
 void main() {
@@ -16,7 +17,7 @@ void main() {
   vec4 projectedPosition = projectionMatrix * viewPosition;
 
   gl_Position = projectedPosition;
-  gl_PointSize = 3.0;
+  gl_PointSize = uSize;
 }
 
 `

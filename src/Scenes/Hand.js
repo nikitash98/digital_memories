@@ -11,8 +11,8 @@ const Hand = (props) => {
     // but a specific material => pointsMaterial
     return (
         <group>
-          <BasicParticles filename = {"hand_01.ply"}></BasicParticles>
-          <BasicParticles filename = {"blood.ply"}></BasicParticles>
+          <BasicParticles filename = {"hand_01.ply"} point_size = {2.0}></BasicParticles>
+          <BasicParticles filename = {"blood.ply"} point_size = {20.0}></BasicParticles>
         </group>
     );
   };

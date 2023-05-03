@@ -5,7 +5,7 @@ import * as THREE from "three" // <---
 
 import vertexShader from "./Assets/mildvertex";
 import fragmentShader from "./Assets/basicfragmentShader";
-const BasicParticles = ({filename, noise = 0}) => {
+const BasicParticles = ({filename, noise = 0, ...props}) => {
     // This reference gives us direct access to our points
     const points = useRef();
     const smallRef = useRef();
@@ -22,13 +22,15 @@ const BasicParticles = ({filename, noise = 0}) => {
           uTime: {
             value: 1.0,
           },
+          uSize: {
+            value: props.point_size,
+          }
         }),
         []
       );
     
     useEffect(() => {
         smallRef.current.setAttribute( 'position', new THREE.BufferAttribute(new Float32Array(pointCloud.attributes.position.array), 3));
-        console.log(pointCloud.attributes)
         if("color" in pointCloud.attributes) {
           smallRef.current.setAttribute( 'color', new THREE.BufferAttribute(new Float32Array(pointCloud.attributes.color.array), 3));
 
@@ -68,5 +70,9 @@ onPointerOver={()=> {        document.body.style.cursor = 'pointer';}} onPointer
 
     );
   };
+
+  BasicParticles.defaultProps = {
+    point_size: 1.0
+  }
 
   export default BasicParticles

@@ -22,6 +22,7 @@ export function Guy(props) {
     actions.MikeAlgerAction.repetitions = 0;
     console.log(actions.MikeAlgerAction)
   }, []);
+  
   const handleHover = (e) => {
     document.body.style.cursor = 'pointer';
     console.log(props.camRef.current)

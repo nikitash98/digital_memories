@@ -11,7 +11,7 @@ const LookCamera = (props) => {
     let new_original_position = useRef(new Vector3(8.58 , 3.47, -14.29))
     let current_look_position = useRef(new Vector3(-1.29286,  2.05505, -30.9742))
     const move_positions = [[0, .8, 4], [1, 8, 38], [-2.43317, 5.71172, 43]]
-    let move_vectors = move_positions.map(x => new Vector3(x[0], x[1], x[2]))
+    let move_vectors = props.position.map(x => new Vector3(x[0], x[1], x[2]))
 
     //const move_positions = [new Vector3(5.43317, 3.71172, -18.6191), new Vector3(1.43317, 5.71172, -100), new Vector3(5.43317, 3.71172, -18.6191)]
     //const look_positions = [[2.29286,  4.65505, -30.9742 + 30], [0.29286,  5.05505, -30.9742  + 30], [0.29286,  5.05505, -30.9742  + 0]]
@@ -20,6 +20,7 @@ const LookCamera = (props) => {
     let look_vectors = look_positions.map(x => new Vector3(x[0], x[1], x[2]))
 
     let cont = props.counter % 3 
+
     useFrame(() => {
         /*
         //original_position = move_positions[cont]
@@ -45,5 +46,10 @@ const LookCamera = (props) => {
 
         </group>
     )
+}
+
+
+LookCamera.defaultProps = {
+    position: [0, 0.8, 4]
 }
 export default LookCamera;
