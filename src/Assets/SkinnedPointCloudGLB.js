@@ -58,7 +58,12 @@ return (
           count={vertices.length / 3}
           itemSize={3}
           onUpdate={update}
-
+      <bufferAttribute
+          attach = "attributes-position"
+          array={vertices}
+          count={vertices.length / 3}
+          itemSize={3}
+        />
         />
       </bufferGeometry>
       <meshBasicMaterial attach="material" color="hotpink" />
@@ -66,8 +71,8 @@ return (
     */}
      <points ref={meshRef} scale={1}>
       
-      <bufferGeometry attach="geometry">
-     
+      <bufferGeometry attach="geometry" geometry={}>
+
 
       </bufferGeometry>
       <pointsMaterial attach="material" color="blue" size={0.05} />
