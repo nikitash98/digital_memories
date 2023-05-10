@@ -23,8 +23,6 @@ const WindParticles = ({filename, noise = 0}) => {
     const deltaY = clientY - previousMousePosition.current[1]
 
     const speed = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2))/deltaTime
-    console.log(speed)
-
     previousMousePosition.current = [clientX, clientY, performance.now()] 
     
     const pointCloud = useLoader(
@@ -52,8 +50,9 @@ const WindParticles = ({filename, noise = 0}) => {
 
     useFrame((state) => {
       const { clock } = state;
+
       points.current.material.uniforms.uTime.value = clock.elapsedTime;
-      points.current.material.uniforms.uSpeed.value = Math.min(speed, 100);
+      points.current.material.uniforms.uSpeed.value = Math.max(speed, 2);
 
     })
     // <---

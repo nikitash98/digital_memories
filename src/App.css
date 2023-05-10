@@ -59,7 +59,29 @@
 
 }
 
+.start_button {
+  transform: translate(-50%, -50%);
+  background-color: white;
+  font-weight: 800;
+  border-radius: 100px;
+  width: 5px;
+  height: 5px;
+}
 
+
+.fadeOut{
+  width:0;
+  height:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+
+}
+.fadeIn{
+  opacity:1;
+  width:100px;
+  height:100px;
+  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
+
+}
 .logo-icon {
   position: absolute;
   top: 0%;
@@ -109,4 +131,15 @@
 #previous {
   bottom: 5%;
   left: 5%;
+}
+
+.programming_screen {
+  background-color: rgb(161, 161, 161);
+  width: 500px;
+  height: 400px;
+  overflow: scroll;
+}
+
+.programming_interior {
+  height: 600px;
 }

@@ -8,6 +8,8 @@ const vertexShader = `
 
 uniform float uTime;
 uniform float uSpeed;
+varying vec3 vColor;
+
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 vec3 fade(vec3 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}
@@ -118,8 +120,9 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 }
 void main() {
+  vColor = color;
 
-  vec3 newPosition = position + cnoise(position * 20.0 + uTime) * 0.005 * uSpeed;
+  vec3 newPosition = position + cnoise(position * 1.0 + uTime) * 0.05 * uSpeed;
   vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
   vec4 viewPosition = viewMatrix * modelPosition;
   vec4 projectedPosition = projectionMatrix * viewPosition;

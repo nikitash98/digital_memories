@@ -13,7 +13,8 @@ const Subway = (props) => {
     // but a specific material => pointsMaterial
     return (
         <group>
-            <BasicParticles filename = "subway.ply" point_size = {10.0}></BasicParticles>
+            <BasicParticles filename = "sub_low.ply" point_size = {5.0} ></BasicParticles>
+            <BasicParticles filename = "metro_low.ply" point_size = {5.0}></BasicParticles>
             {/*
 
             <Person camRef = {props.camRef}></Person>
@@ -21,7 +22,15 @@ const Subway = (props) => {
             */
 
             }
-            <Guy camRef = {props.camRef}/>
+
+        <Guy camRef = {props.camRef} position = {[-1, 0, -1]} setLookPositionIndex = {props.setLookPositionIndex}/>
+
+            <Guy camRef = {props.camRef} position = {[2, 0, 2]} setLookPositionIndex = {props.setLookPositionIndex}/>
+
+            <Guy camRef = {props.camRef} position = {[-1, 0, 8]} setLookPositionIndex = {props.setLookPositionIndex}/>
+
+            <Guy camRef = {props.camRef} position = {[-1, 0, -5]} setLookPositionIndex = {props.setLookPositionIndex}/>
+
         </group>
     );
   };

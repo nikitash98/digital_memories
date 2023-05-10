@@ -17,8 +17,6 @@ const SkinnedPointCloudGLB = () => {
 
 
   useEffect(() => {
-    console.log(meshRef)
-    console.log(meshRef.current)
 
     var geometry = nodes.node_id53.geometry;
 
@@ -70,12 +68,12 @@ return (
     </mesh>
     */}
      <points ref={meshRef} scale={1}>
-      
+      {/*
       <bufferGeometry attach="geometry" geometry={}>
-
-
       </bufferGeometry>
       <pointsMaterial attach="material" color="blue" size={0.05} />
+      */}
+
     </points>
     {/*
 

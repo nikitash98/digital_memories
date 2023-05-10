@@ -3,6 +3,7 @@ import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader'
 import { useLoader, useFrame} from '@react-three/fiber';
 import * as THREE from "three" // <---
 import BasicParticles from "../BasicParticles";
+import { Html } from "@react-three/drei";
 const Office = (props) => {
 
     const cloudRef = useRef()
@@ -16,8 +17,22 @@ const Office = (props) => {
 
         <group>
           <group ref={cloudRef}>
-          <BasicParticles filename = {"office.ply"} point_size = {5.0}></BasicParticles>
+          <BasicParticles filename = {"office_low.ply"} point_size = {5.0}></BasicParticles>
+          <group rotation = {[0,-Math.PI/8, 0]}>
+
+          <Html position={[.5, .8, -.4]} rotation = {[-Math.PI/8,0, 0]}scale={.02} transform>
+            <div className="programming_screen">
+            <h1>ABC</h1>
+
+              <div className="programming_interior">
+                ABC
+              </div>
+            </div>
+          </Html>
+          </group>
+
         </group>
+
         </group>
         
         

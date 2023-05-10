@@ -21,6 +21,7 @@ const Plane = (props) => {
 
         <group>
           <Plane_Window/>
+
           <group ref={cloudRef}>
           <BasicParticles filename = {"cloud_col.ply"} point_size = {10.0}></BasicParticles>
         </group>

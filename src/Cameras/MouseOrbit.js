@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useFrame } from 'react-three-fiber'
 import { OrbitControls } from '@react-three/drei'
 import useMousePosition from '../useMousePosition'
-const MouseOrbit = () => {
+const MouseOrbit = (props) => {
   const controlsRef = useRef()
   const { clientX, clientY } = useMousePosition();
 
@@ -21,6 +21,8 @@ const MouseOrbit = () => {
       dampingFactor={0.05}
       rotateSpeed={0.5}
       enabled = {false}
+      minDistance={props.distance}
+      maxDistance={props.distance}
     />
   )
 }

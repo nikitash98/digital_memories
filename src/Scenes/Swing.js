@@ -16,12 +16,17 @@ const Swing = (props) => {
         <group>
 
         <group scale={20.0}>
-                      <WindParticles filename = {"tree.ply"}></WindParticles>
 
         </group>
+        <WindParticles filename = {"leaves.ply"}></WindParticles>
+        <BasicParticles filename={"just_swings.ply"} point_size = {10.0}></BasicParticles>
         <group scale={20.0}>
             {/*
+            <WindParticles filename = {"tree.ply"}></WindParticles>
+
             <BasicParticles filename={"hydrant.ply"} point_size = {10.0}/>
+        <BasicParticles filename={"leaves.ply"} point_size = {10.0}/>
+
                       <BasicParticles filename = {"tree.ply"} point_size = {5.0}></BasicParticles>
 
             */}

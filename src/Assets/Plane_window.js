@@ -9,11 +9,12 @@ import * as THREE from "three" // <---
 
 export function Plane_Window(props) {
   const { nodes, materials } = useGLTF('plane_window.glb')
-
+  const mat = new THREE.MeshBasicMaterial()
+  mat.color = "red"
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Cylinder.geometry} material={new THREE.MeshBasicMaterial()} position={[0.04, 2.07, 0]} rotation={[-Math.PI, 0, -Math.PI / 2]} scale={[-0.56, -0.07, -0.56]} />
-      <mesh geometry={nodes.Plane.geometry} material={new THREE.MeshBasicMaterial()} position={[0.06, 1.98, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[2.25, 1.24, 2.69]} />
+      <mesh geometry={nodes.Cylinder.geometry} material={mat} position={[0.04, 2.07, 0]} rotation={[-Math.PI, 0, -Math.PI / 2]} scale={[-0.56, -0.07, -0.56]} />
+      <mesh geometry={nodes.Plane.geometry} material={mat} position={[0.06, 1.98, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[2.25, 1.24, 2.69]} />
 
     </group>
   )

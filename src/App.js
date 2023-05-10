@@ -19,83 +19,92 @@ import Swing from './Scenes/Swing';
 import Plane from './Scenes/Plane';
 import Bathroom from './Scenes/Bathroom';
 import Office from './Scenes/Office';
+import Dock from './Scenes/Dock';
+import LivingRoom from './Scenes/LivingRoom';
+import { FilmCamera } from './Assets/FilmCamera';
+import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
+import Characters from './Scenes/Characters';
+
 function App() {
 
   const [scene, setScene] = useState(0)
   const [info, setInfo] = useState(false)
   const camRef = useRef()
   const orbRef = useRef()
-
+  const [lookPositionIndex, setLookPositionIndex]  = useState(0)
   const ping = new Audio(pingSound)
   useEffect(()=> {
   }, [])
 
   function playSound() {
-    ping.play()
+    // ping.play()
 
   }
+  console.log(scene)
   return (
     <div className="App">
       <div class = "game_container" onClick={playSound}>
         <Canvas >
           <group >
           {
-            scene == 5 && (
+            scene == 0  && (
+              <group rotation={[0, +Math.PI/2, 0]}>
+                  <Hand />
+                  <MouseOrbit distance = {7}/>
+              </group>
+
+            )
+          }
+
+
+          
+          {   
+            scene == 1 && (
               <group>
-                <group position={[0, -.2, 2]} rotation ={[-Math.PI/2, 0, 0]}>
-
-                  <Bathroom/>
-                </group>
-                <LookCamera camRef = {camRef}/>
-
+                <Subway camRef = {camRef} setLookPositionIndex = {() => {setLookPositionIndex(lookPositionIndex + 1)}}/>
+                <LookCamera camRef = {camRef} startposition = {[0, 1, 10]} rotation = {[0, 0, 0]}
+                lookPositionIndex = {lookPositionIndex}/>
+              </group>
+            )
+          }
+          {
+            scene == 2 && (
+              <group>
+                <Childhood/>
+                <MouseOrbit distance = {10.0}/>
+              </group>
+            )
+          }
+          {
+            scene == 3 && (
+              <group>
+                <Plane/>
+                {/*
+                <LookCamera camRef = {camRef} startposition = {[1.2, 2, 1]} rotation = {[0, Math.PI/4, 0]} />
+            */}
+                <OrbitControls/>
               </group>
             )
           }
           {
             scene == 4 && (
               <group>
-                <Plane/>
-                <OrbitControls/>
+                <group position={[0, -.2, 2]} rotation ={[-Math.PI/2, 0, 0]}>
 
-              </group>
-            )
-          }
-          {
-            scene == 10 && (
-              <group>
-                {/*<AnimatedPoints scale={100}/> 
-                
-                <LookCamera camRef = {camRef}/>
-                
-                */}
-                <SkinnedPointCloudGLB/>
+                  <Bathroom/>
+                </group>
+                <OrbitControls/>
 
                 {/*
-                <BasicParticles filename = "boxer-pointcloud.ply" setScene = {setScene} scene = {scene}/>
 
-                <group name="Camera" position={[10, 0, 0]} rotation={[0, 0.02, -0.05]}>
-                <Swing/>
+                <LookCamera camRef = {camRef} startposition = {[1.2, 2, 1]} rotation = {[0, Math.PI/4, 0]}/>
+            */}
 
-                </group>
-                */}
-
-                <OrbitControls/>
               </group>
             )
           }
-
-          { scene == 9 && (
-            <group>
-                  <Swing/>
-                  <MouseOrbit/>
-                  
-            </group>
-          )
-
-          }
-
           {
-            scene == 7 && (
+            scene == 5 && (
               <group>
 
                 <Office/>
@@ -103,70 +112,101 @@ function App() {
               </group>
             )
           }
-          {
-            scene == 0  && (
-              <group rotation={[0, +Math.PI/2, 0]}>
-              <Hand />
-              {/*
-              <OrbitControls ref = {orbRef} />
-              <OrbitControls />
-
-              */
-
-              }
-              <CustomGeometryParticles count = {4000}/>
-              </group>
-
-            )
-          }
-
-          {
-            scene == 1 && (
-              <group>
-                <Subway camRef = {camRef}/>
-                <LookCamera camRef = {camRef}/>
-
-                
-              </group>
-            )
-          }
-          {/* 
-          <BackdropPoints/>
           
-          */}
-          {
-            scene == 2 && (
-              <group>
-                <Childhood/>
-              <MouseOrbit/>
-
-              </group>
+          { 
+          
+            scene == 6 && (
+            <group>
+                  <Swing/>
+                  <OrbitControls/>
+                  
+            </group>
             )
+
           }
+          { 
+          
+          scene == 7 && (
+          <group>
+                <LivingRoom/>
+                <OrbitControls/>
+                
+          </group>
+          )
+
+        }
+
+
+          {/*
 
           {
-            scene == 3 && (
+            scene == 7 && (
               <group>
-              <MouseOrbit/>
+                <SkinnedPointCloudGLB/>
 
-                <group scale={0.1} rotation={[-Math.PI/2, 0, Math.PI/3]} >
-                  <BasicParticles filename = "boxer-pointcloud.ply" setScene = {setScene} scene = {scene}/>
+                <BasicParticles filename = "boxer-pointcloud.ply" setScene = {setScene} scene = {scene}/>
+
+                <group name="Camera" position={[10, 0, 0]} rotation={[0, 0.02, -0.05]}>
+                <Swing/>
+
                 </group>
+
+                <OrbitControls/>
               </group>
             )
           }
+                */}
+
+          {
+            scene == 8  && (
+              <group rotation={[0,Math.PI, 0]}>
+
+
+                  <EffectComposer>
+                      <DepthOfField
+                        focusDistance={2}
+                        focalLength={.8}
+                        bokehScale={8}
+                      />
+                    </EffectComposer>
+
+                  <Dock />
+                  <OrbitControls/>
+              </group>
+
+            )
+          }
+          {
+            scene == 9 && (
+            <group>
+              <FilmCamera/>
+              <MouseOrbit distance = {.4}/>
+              <ambientLight intensity={0.5}/>
+            </group>
+            )
+          }
+          {
+            scene == 10 && (
+            <group>
+              <Characters/>
+              <OrbitControls/>
+              <ambientLight intensity={0.5}/>
+            </group>
+            )
+          }
+
+
           </group>
 
-          <ambientLight color="#ffffff" intensity={4}/>
 
         </Canvas>
       </div>
       <div class = "overlay">
         <div class = "logo-icon">
-          <h1>Digital Memoria</h1>
+          <h1>Memoria</h1>
         </div>
-        <button class = "click-button" id = "next" onClick={()=> {setScene((scene + 1)%10)}}>Next - </button>
-        <button class = "click-button" id = "previous" onClick={()=> {setScene((scene - 1)%10)}}> - Previous</button>
+        <button class = "click-button" id = "next" onClick={()=> {setScene((scene + 1)%11)}}>Next - </button>
+        <button class = "click-button" id = "previous" onClick={()=> {setScene((scene - 1)%11)}}> - Previous</button>
 
         <div class = "info-icon" onMouseEnter={()=> {setInfo(true)}}>
           Info!
@@ -177,7 +217,7 @@ function App() {
             1. Digital Memoria
           </h1>
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae ullamcorper tellus, ut volutpat libero. Aenean molestie metus eros, at elementum sapien hendrerit vitae. Cras tincidunt odio ligula, at luctus est pretium at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse mollis cursus pellentesque. Proin nunc risus, elementum a ante eget, semper aliquet sem. Donec eu ipsum sapien. Suspendisse urna eros, sodales eu tincidunt ut, bibendum ac nibh. Duis laoreet vitae magna ut ullamcorper. Suspendisse convallis diam a urna tristique gravida. Curabitur congue, ipsum ac sagittis varius, mauris ipsum volutpat odio, vel accumsan ante dolor vitae nisl. Cras at velit at mauris auctor gravida. Donec velit lorem, fermentum at lacus ac, tristique dignissim lacus. Nullam et urna fermentum, cursus quam quis, maximus ipsum.
+          My Major Studio project concerns a merging of three strains of inquiry - memory, the internet, and computer generated imagery (CGI). I will start by tracing the history of memory in computation and the internet. From this history, I will argue for the use of point clouds as an artistic medium, capable of mimicking and representing memories. I conclude with a description my website, Digital Memoria
           <br/>
           <br/>
 Sed eget molestie mi. Aenean vel fringilla sem, a mattis lorem. Curabitur vel diam eu nibh fermentum ultrices. Morbi pretium elit sit amet elit pulvinar, in mollis mi euismod. Phasellus in cursus eros. Aliquam erat volutpat. Vivamus eget pretium odio. Ut imperdiet sed massa ut varius. Aliquam imperdiet nec turpis eu porttitor. Phasellus ut mi pharetra, porta nisi vitae, pretium risus. In ut ipsum mauris. Donec ultrices, lacus non semper ullamcorper, mi lectus sollicitudin odio, sed lacinia tellus dui sit amet dolor.
